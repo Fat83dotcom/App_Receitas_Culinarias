@@ -2,68 +2,13 @@
 {% block 'content' %}
 
 <div class="main-content-list">
-    <section class="recipe recipe-list-item oxygen-regular">
-
-        <div class="recipe-cover">
-            <img src="https://placehold.co/1280x720/000000/FFFFFF.png" alt="temp">
-        </div>
-        <article class="recipe-title-container">
-            <h2 class="recipe-title">Lorem ipsum dolor sit amet.</h2>
-        </article>
-
-        <article class="recipe-author">
-            <span class="recipe-author-item">
-                <i class="fa-solid fa-user"></i>
-                Fernand Mendes
-            </span>
-            <span class="recipe-author-item">
-                <i class="fa-solid fa-calendar-days"></i>
-                06/07/2024
-            </span>
-            <span class="recipe-author-item">
-                <a href="#">
-                    <i class="fa-solid fa-tag"></i>
-                    Categoria
-                </a>
-            </span>
-        </article>
-
-        <article class="recipe-content">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, fugiat nihil officia, vel quo quidem
-                nulla perspiciatis accusantium cumque, illo id laudantium corporis. Tempora soluta ipsam animi
-                repudiandae expedita incidunt.</p>
-        </article>
-
-        <article class="recipe-meta-container">
-            <div class="recepi-meta recipe-preparation">
-                <span class="recipe-meta-title">
-                    <i class="fa-solid fa-clock"></i>
-                    <h3>Preparo</h3>
-                </span>
-                <div class="recipe-meta-text">
-                    0 minutos
-                </div>
-            </div>
-            <div class="recepi-meta recipe-servings">
-                <span class="recipe-meta-title">
-                    <i class="fa-solid fa-pizza-slice"></i>
-                    <h3>Porções</h3>
-                </span>
-                <div class="recipe-meta-text">
-                    0 porções
-                </div>
-            </div>
-        </article>
-
-        <footer class="recipe-footer">
-            <a href="" class="recipe-read-more button button-dark button-full-width">
-                <span><i class="fa-solid fa-circle-plus"></i>
-                    <h4>ver mais ...</h4>
-                </span>
-            </a>
-        </footer>
-
-    </section>
+    {% include 'partials/recipe_card.html' %}
+    {% include 'partials/recipe_card.html' %}
+    {% include 'partials/recipe_card.html' %}
+    {% include 'partials/recipe_card.html' %}
+    {% include 'partials/recipe_card.html' %}
+    {% include 'partials/recipe_card.html' %}
+    {% include 'partials/recipe_card.html' %}
 </div>
 
 {% endblock %}
