@@ -1,33 +1,31 @@
 <section class="recipe recipe-list-item oxygen-regular">
 
     <div class="recipe-cover">
-        <img src="https://placehold.co/1280x720/000000/FFFFFF.png" alt="temp">
+        <img src="{{recipe.cover.url}}" alt="temp">
     </div>
     <article class="recipe-title-container">
-        <h2 class="recipe-title">Lorem ipsum dolor sit amet.</h2>
+        <h2 class="recipe-title">{{recipe.title}}</h2>
     </article>
 
     <article class="recipe-author">
         <span class="recipe-author-item">
             <i class="fa-solid fa-user"></i>
-            Fernand Mendes
+            <p>{{recipe.author.first_name}}</p>
         </span>
         <span class="recipe-author-item">
             <i class="fa-solid fa-calendar-days"></i>
-            06/07/2024
+            <p>{{recipe.created_at|date:"d/m/Y"}}</p>
         </span>
         <span class="recipe-author-item">
             <a href="#">
                 <i class="fa-solid fa-tag"></i>
-                Categoria
+                <p>{{recipe.category.name}}</p>
             </a>
         </span>
     </article>
 
     <article class="recipe-content">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, fugiat nihil officia, vel quo quidem
-            nulla perspiciatis accusantium cumque, illo id laudantium corporis. Tempora soluta ipsam animi
-            repudiandae expedita incidunt.</p>
+        <p>{{recipe.description}}</p>
     </article>
 
     <article class="recipe-meta-container">
@@ -37,7 +35,7 @@
                 <h3>Preparo</h3>
             </span>
             <div class="recipe-meta-text">
-                0 minutos
+                <p>{{recipe.preparation_time}} {{recipe.preparation_time_unit}}</p>
             </div>
         </div>
         <div class="recepi-meta recipe-servings">
@@ -46,11 +44,11 @@
                 <h3>Porções</h3>
             </span>
             <div class="recipe-meta-text">
-                0 porções
+                <p>{{recipe.servings}} {{recipe.servings_unit}}</p>
             </div>
         </div>
     </article>
-
+    {% if not is_detail %}
     <footer class="recipe-footer">
         <a href="{% url 'recipe_view' 1 %}" class="recipe-read-more button button-dark button-full-width">
             <span><i class="fa-solid fa-circle-plus"></i>
@@ -58,5 +56,12 @@
             </span>
         </a>
     </footer>
+    {% endif %}
+
+    {% if is_detail %}
+    <article class="preparation-steps">
+        <p>{{ recipe.preparation_steps }}</p>
+    </article>
+    {% endif %}
 
 </section>
