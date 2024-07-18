@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block 'content' %}
-<div class="main-content-detail">
+
+<div class="main-content-list  main-content-detail">
+    {% for recipe in recipe %}
+    {% if recipe.is_published %}
     {% include 'partials/recipe_card.html' %}
+    {% endif %}
+    {% endfor %} 
 </div>
+
 {% endblock %}
