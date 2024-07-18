@@ -3,9 +3,10 @@
 
 <div class="main-content-list">
     {% for recipe in recipes %}
+    {% if recipe.is_published %}
     {% include 'partials/recipe_card.html' %}
-    {% endfor %}
-    
+    {% endif %}
+    {% endfor %} 
 </div>
 
 {% endblock %}
