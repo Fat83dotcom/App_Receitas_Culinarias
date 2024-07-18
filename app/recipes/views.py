@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from utils.recipe_factory import make_recipe
+from recipes.models import Recipe
 
 
 class Home(View):
@@ -8,9 +9,10 @@ class Home(View):
     title = 'Home'
 
     def get(self, request):
+        recipes = Recipe.objects.all().order_by('-id')
         context = {
             'title': self.title,
-            'recipes': [make_recipe() for _ in range(9)],
+            'recipes': recipes,
         }
         return render(request, self.template, context)
 
