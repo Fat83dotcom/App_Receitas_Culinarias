@@ -10,7 +10,11 @@
     <article class="recipe-author">
         <span class="recipe-author-item">
             <i class="fa-solid fa-user"></i>
+            {% if recipe.author.first_name %}
             <p>{{recipe.author.first_name}}</p>
+            {% else %}
+            <p>{{recipe.author.user_name}}</p>
+            {% endif %}
         </span>
         <span class="recipe-author-item">
             <i class="fa-solid fa-calendar-days"></i>
