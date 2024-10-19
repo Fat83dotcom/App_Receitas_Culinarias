@@ -10,7 +10,9 @@ class Home(View):
     title = 'Home'
 
     def get(self, request):
-        recipes = Recipe.objects.all().order_by('-id')
+        recipes = Recipe.objects.all().filter(
+            is_published=True,
+        ).order_by('-id')
         context = {
             'title': self.title,
             'recipes': recipes,
@@ -23,7 +25,10 @@ class RecipeView(View):
     title = 'Receita'
 
     def get(self, request, cod):
-        recipe = Recipe.objects.filter(id=cod)
+        recipe = Recipe.objects.filter(
+            id=cod,
+            is_published=True,
+        )
         context = {
             'title': self.title,
             'recipe': recipe,
@@ -38,7 +43,8 @@ class CategoryView(View):
 
     def get(self, request, cod_category):
         recipes = Recipe.objects.filter(
-            category__id=cod_category
+            category__id=cod_category,
+            is_published=True,
         ).order_by('-id')
 
         if not recipes:
