@@ -9,4 +9,5 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ['title']
+    list_display = ['title', 'is_published']
+    list_editable = ['is_published']
