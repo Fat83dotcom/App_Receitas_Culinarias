@@ -3,9 +3,11 @@
 
 <div class="main-content-list">
     {% for recipe in recipes %}
-    {% if recipe.is_published %}
+    
     {% include 'partials/recipe_card.html' %}
-    {% endif %}
+    {% empty %}
+    <h1>Não há receitas por enquanto, volte mais tarde!</h1>
+    
     {% endfor %} 
 </div>
 
