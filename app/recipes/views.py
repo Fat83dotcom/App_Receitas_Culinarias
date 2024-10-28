@@ -1,7 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.views import View
-# from utils.recipe_factory import make_recipe
-from django.http import Http404
 from recipes.models import Recipe
 
 
@@ -25,7 +23,8 @@ class RecipeView(View):
     title = 'Receita'
 
     def get(self, request, cod):
-        recipe = Recipe.objects.filter(
+        recipe = get_object_or_404(
+            Recipe,
             id=cod,
             is_published=True,
         )
@@ -42,18 +41,13 @@ class CategoryView(View):
     title = 'Categorias'
 
     def get(self, request, cod_category):
-        recipes = Recipe.objects.filter(
+        recipes = get_list_or_404(Recipe.objects.filter(
             category__id=cod_category,
             is_published=True,
-        ).order_by('-id')
-
-        if not recipes:
-            raise Http404('Não Encontrado!')
-
-        category_name = recipes.first().category.name
+        ).order_by('-id'))
 
         context = {
-            'title': f'{self.title} | {category_name}',
+            'title': f'{self.title} | {recipes[0].category.name}',
             'recipes': recipes,
         }
         return render(request, self.template, context)
