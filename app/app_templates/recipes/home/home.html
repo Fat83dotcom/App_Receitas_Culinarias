@@ -3,11 +3,9 @@
 
 <div class="main-content-list">
     {% for recipe in recipes %}
-    
     {% include 'partials/recipe_card.html' %}
     {% empty %}
-    <h1>Não há receitas por enquanto, volte mais tarde!</h1>
-    
+    <h1 class="center">Não há receitas por enquanto, volte mais tarde!</h1>
     {% endfor %} 
 </div>
 
