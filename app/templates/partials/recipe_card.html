@@ -64,7 +64,11 @@
 
     {% if is_detail %}
     <article class="preparation-steps">
-        <p>{{ recipe.preparations_steps }}</p>
+        {% if recipe.preparations_step_is_html %}
+        <p>{{ recipe.preparations_steps | safe }}</p>
+        {% else %}
+        <p>{{ recipe.preparations_steps | linebreaksbr}}</p>
+        {% endif %}
     </article>
     {% endif %}
 
