@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.views import View
 from recipes.models import Recipe
+import pdb
 
 
 class Home(View):
@@ -8,9 +9,12 @@ class Home(View):
     title = 'Home'
 
     def get(self, request):
-        recipes = Recipe.objects.all().filter(
-            is_published=True,
-        ).order_by('-id')
+        recipes = get_list_or_404(
+            Recipe.objects.all().filter(
+                is_published=True,
+            ).order_by('-id')
+        )
+        #pdb.set_trace()
         context = {
             'title': self.title,
             'recipes': recipes,
