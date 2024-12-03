@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.views import View
 from recipes.models import Recipe
-import pdb
+
+# import pdb
 
 
 class Home(View):
@@ -9,16 +10,15 @@ class Home(View):
     title = 'Home'
 
     def get(self, request):
-        recipes = get_list_or_404(
-            Recipe.objects.all().filter(
-                is_published=True,
-            ).order_by('-id')
-        )
-        #pdb.set_trace()
+        recipes = Recipe.objects.all().filter(
+            is_published=True,
+        ).order_by('-id')
         context = {
             'title': self.title,
             'recipes': recipes,
         }
+        if not recipes:
+            return render(request, self.template, context, status=404)
         return render(request, self.template, context)
 
 
@@ -27,11 +27,9 @@ class RecipeView(View):
     title = 'Receita'
 
     def get(self, request, cod):
-        recipe = get_object_or_404(
-            Recipe,
-            id=cod,
-            is_published=True,
-        )
+        recipe = Recipe.objects.all().filter(id=cod, is_published=True).first()
+        if not recipe:
+            return render(request, self.template, status=404)
         context = {
             'title': self.title,
             'recipe': recipe,
@@ -45,13 +43,15 @@ class CategoryView(View):
     title = 'Categorias'
 
     def get(self, request, cod_category):
-        recipes = get_list_or_404(Recipe.objects.filter(
+        recipe = Recipe.objects.all().filter(
             category__id=cod_category,
             is_published=True,
-        ).order_by('-id'))
+        ).order_by('-id').first()
 
+        if not recipe:
+            return render(request, self.template, status=404)
         context = {
-            'title': f'{self.title} | {recipes[0].category.name}',
-            'recipes': recipes,
+            'title': f'{self.title} | {recipe.category.name}',
+            'recipe': recipe,
         }
         return render(request, self.template, context)
